@@ -1,7 +1,7 @@
 CHAT_TEMPLATES = {
     
     {
-        templateId = "Jay:JayBaitCar:standard",
+        templateId = "Jay:BaitCar:standard",
         htmlString = "{0}"
     }
     

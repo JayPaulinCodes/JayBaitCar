@@ -25,8 +25,9 @@ LOCALES["en"] = {
 --    +------------+  
 
     ["kvpString_baitCar_vehicle"] = "Jay:BaitCar:baitCar_vehicle_%s",
-    ["kvpString_baitCar_eBrakeApplied"] = "Jay:BaitCar:baitCar_vehicle_%s",
-    ["kvpString_baitCar_doorsLocked"] = "Jay:BaitCar:baitCar_vehicle_%s",
+    ["kvpString_baitCar_forceEngine"] = "Jay:BaitCar:baitCar_forceEngine_%s",
+    ["kvpString_baitCar_eBrakeApplied"] = "Jay:BaitCar:baitCar_eBrakeApplied_%s",
+    ["kvpString_baitCar_doorsLocked"] = "Jay:BaitCar:baitCar_doorsLocked_%s",
 
 --    +------------+        
 --    |  Commands  |
@@ -60,8 +61,28 @@ LOCALES["en"] = {
 --    |  Messages  |
 --    +------------+   
 
+    -- Bait Car Install Messages
+    ["setBaitCarStage1"] = "installing bait car equipment...",  
+    ["setBaitCarStage2"] = "successfully installed bait car equipment!",
+    ["setBaitCarStage3"] = "linking bait car to receiver...",
+    ["setBaitCarStage4"] = "successfully linked bait car to receiver!",
+    ["setBaitCarStage5"] = "testing receiver satellite connection...",
+    ["setBaitCarStage6"] = "satellite #1 successfully established a connection!",
+    ["setBaitCarStage7"] = "satellite #2 successfully established a connection!",
+    ["setBaitCarStage8"] = "satellite #3 successfully established a connection!",
+    ["setBaitCarStage9"] = "satellite #4 successfully established a connection!",
+    ["setBaitCarStage10"] = "satellite #5 successfully established a connection!",
+    ["setBaitCarDone"] = "the bait car has successfully been setup and linked!",
+
+    -- Misc
+    ["notInCar"] = "you must be in a car to do this!",
+    ["forceOffEngine"] = "forcing off the bait car's engine.",
+    ["releaseEngine"] = "releasing the bait car's engine.",
+
     -- Other
-    ["registeredCommand"] = "registered command: ",
-    ["registeredChatTemplate"] = "registered chat template: ",
+    ["registeredCommand"] = " registered command: ",
+    ["registeredChatTemplate"] = " registered chat template: ",
+    ["obtainingLicense"] = "obtaining player license.",
+    ["failedToObtainLicense"] = "failed to obtain player license. Please try to relog.",
 
 }

@@ -1,19 +1,58 @@
 --[[
-    TriggerServerEvent("Jay:BaitCar:setBaitCarData", table)
-    
     An example event
 
     @param {Table} table - The message 
 ]]
-RegisterServerEvent("Jay:BaitCar:setBaitCarData")
-AddEventHandler("Jay:BaitCar:setBaitCarData", function(table) 
+AddEventHandler("playerConnecting", function(name, setKickReason, deferrals) 
+    local _source = source
+    local identifier = nil
+
+    deferrals.defer()
+
+    Wait(0)
+
+    deferrals.update(_U("obtainingLicense"))
+
+    identifier = getIdentifierFromSource("license", _source)
+
+    Wait(0)
+
+    if identifier == nil then
+        deferrals.done(_U("failedToObtainLicense"))
+    else
+        deferrals.done()
+        TriggerClientEvent("Jay:BaitCar:receiveIdentifier", _source, identifier)
+    end
+
+end)
+
+
+--[[
+    An example event
+
+    @param {Table} table - The message 
+]]
+AddEventHandler("onResourceStart", function(resource) 
+    local _resource = resource
+
+    if _resource == GetCurrentResourceName() then
+        Wait(5000)
+        TriggerClientEvent("Jay:BaitCar:updateIdentifier", -1)
+    end
+
+end)
+
+
+--[[
+    TriggerServerEvent("Jay:BaitCar:updatePlayerIdentifier", table)
+    
+    An example event
+]]
+RegisterServerEvent("Jay:BaitCar:updatePlayerIdentifier")
+AddEventHandler("Jay:BaitCar:updatePlayerIdentifier", function() 
     local _source = source
     local identifier = getIdentifierFromSource("license", _source)
-    local kvpString = _("kvpString_baitCar", identifier)
 
-    SetResourceKvpStringNoSync(kvpString, table["Vehicle"])
-    SetResourceKvpIntNoSync(kvpString, table["EBrakeApplied"])
-    SetResourceKvpIntNoSync(kvpString, table["DoorsLocked"])
-
-    FlushResourceKvp()
+    print(_source)
+    TriggerClientEvent("Jay:BaitCar:receiveIdentifier", _source, identifier)
 end)
