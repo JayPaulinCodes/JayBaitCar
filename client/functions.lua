@@ -233,6 +233,8 @@ function doBaitCarInstallRoutine()
     local waitTime_7 = math.random(14, 18) * 1000
     local stage3WaitTime = waitTime_3 + waitTime_4 + waitTime_5 + waitTime_6 + waitTime_7
 
+    print(waitTime_1, waitTime_2, waitTime_3, waitTime_4, waitTime_5, waitTime_6, waitTime_7, stage3WaitTime)
+
     --[[
         Stages:
         
@@ -255,12 +257,12 @@ function doBaitCarInstallRoutine()
     --
 
         -- Start Install Equipment
+        print("start stage 1")
         drawNotification(_("fiveMColour_yellow") .. _U("setBaitCarStage1"))
         
         -- Start Animation
         ClearPedTasks(playerPed)
         LoadAnim("veh@std@ds@base")
-        print("Anim 1")
         TaskPlayAnim(playerPed, "veh@std@ds@base", "hotwire", 8.0, 8.0, waitTime_1, 51, 2, 0, 0, 0)
         RemoveAnimDict("veh@std@ds@base")
 
@@ -270,6 +272,7 @@ function doBaitCarInstallRoutine()
         -- Finish Install Equiment
         drawNotification(_("fiveMColour_green") .. _U("setBaitCarStage2"))
 
+        print("end stage 1")
 
     --
     -- STAGE 2 - Linking Receiver
@@ -277,6 +280,7 @@ function doBaitCarInstallRoutine()
     -- Max: 15 seconds
     --
 
+    print("start stage 2")
         -- Start Linking Receiver
         drawNotification(_("fiveMColour_yellow") .. _U("setBaitCarStage3"))
         
@@ -286,14 +290,14 @@ function doBaitCarInstallRoutine()
         Wait(3000)
 
         -- Start Radar Animation (w_am_digiscanner)
-        ClearPedTasks(playerPed)
-        LoadAnim("cellphone@")
+        -- ClearPedTasks(playerPed)
+        -- LoadAnim("cellphone@")
         print("Anim 2", stage3WaitTime)
-        TaskPlayAnim(playerPed, "cellphone@", "cellphone_text_read_base", 2.0, 2.0, stage3WaitTime, 0, 0, false, false, false)
-        RemoveAnimDict("cellphone@")
+        -- TaskPlayAnim(playerPed, "cellphone@", "cellphone_text_read_base", 2.0, 2.0, stage3WaitTime, 0, 0, false, false, false)
+        -- RemoveAnimDict("cellphone@")
         
         print("Adding Phone")
-        AddPropToPlayer("prop_npc_phone_02", 28422, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        -- AddPropToPlayer("prop_npc_phone_02", 28422, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
         -- AddPropToPlayer("w_am_digiscanner", 28422, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
         -- Wait
@@ -302,6 +306,7 @@ function doBaitCarInstallRoutine()
         -- Finish Linking Receiver
         drawNotification(_("fiveMColour_green") .. _U("setBaitCarStage4"))
 
+        print("end stage 2")
 
     --
     -- STAGE 3 - Testing Satellite Connections
@@ -309,6 +314,7 @@ function doBaitCarInstallRoutine()
     -- Collective Max: 85 seconds
     --
 
+    print("start stage 3")
         -- Start Testing Satellite Connections
         drawNotification(_("fiveMColour_yellow") .. _U("setBaitCarStage5"))
 
@@ -319,12 +325,14 @@ function doBaitCarInstallRoutine()
     -- Max: 16 seconds
     --
 
+    print("start stage 3.1")
         -- Wait
         Wait(waitTime_3)
 
         -- Finish Testing Satellite 1 Connection
         drawNotification(_("fiveMColour_blue") .. _U("setBaitCarStage6"))
 
+        print("end stage 3.1")
 
     --
     -- STAGE 3.2 - Testing Satellite 2 Connection
@@ -332,12 +340,14 @@ function doBaitCarInstallRoutine()
     -- Max: 18 seconds
     --
 
+    print("start stage 3.2")
         -- Wait
         Wait(waitTime_4)
 
         -- Finish Testing Satellite 2 Connection
         drawNotification(_("fiveMColour_blue") .. _U("setBaitCarStage7"))
 
+        print("end stage 3.2")
 
     --
     -- STAGE 3.3 - Testing Satellite 3 Connection
@@ -345,18 +355,21 @@ function doBaitCarInstallRoutine()
     -- Max: 18 seconds
     --
 
+    print("start stage 3.3")
         -- Wait
         Wait(waitTime_5)
 
         -- Finish Testing Satellite 3 Connection
         drawNotification(_("fiveMColour_blue") .. _U("setBaitCarStage8"))
 
+        print("end stage 3.3")
 
     --
     -- STAGE 3.4 - Testing Satellite 4 Connection
     -- Min: 12 seconds
     -- Max: 15 seconds
     --
+    print("start stage 3.4")
 
         -- Wait
         Wait(waitTime_6)
@@ -364,12 +377,14 @@ function doBaitCarInstallRoutine()
         -- Finish Testing Satellite 4 Connection
         drawNotification(_("fiveMColour_blue") .. _U("setBaitCarStage9"))
 
+        print("end stage 3.4")
 
     --
     -- STAGE 3.5 - Testing Satellite 5 Connection
     -- Min: 14 seconds
     -- Max: 18 seconds
     --
+    print("start stage 3.5")
 
         -- Wait
         Wait(waitTime_7)
@@ -377,7 +392,9 @@ function doBaitCarInstallRoutine()
         -- Finish Testing Satellite 5 Connection
         drawNotification(_("fiveMColour_blue") .. _U("setBaitCarStage10"))
 
+        print("end stage 3.5")
 
+        print("end stage 3")
     --
     -- ROUTINE FINISH
     --
@@ -389,6 +406,195 @@ function doBaitCarInstallRoutine()
         end
 
         drawNotification(_("fiveMColour_green") .. _U("setBaitCarDone"))
+        print("done")
+end
+
+function doBaitCarInstallRoutineDEV()
+	local playerPed = GetPlayerPed(-1)
+    local vehicle = GetVehiclePedIsIn(playerPed, false)
+    local waitTime_1 = math.random(18, 20) * 100
+    local waitTime_2 = math.random(6, 15) * 100
+    local waitTime_3 = math.random(13, 16) * 100
+    local waitTime_4 = math.random(13, 18) * 100
+    local waitTime_5 = math.random(14, 18) * 100
+    local waitTime_6 = math.random(12, 15) * 100
+    local waitTime_7 = math.random(14, 18) * 100
+    local stage3WaitTime = waitTime_3 + waitTime_4 + waitTime_5 + waitTime_6 + waitTime_7
+
+    print(waitTime_1, waitTime_2, waitTime_3, waitTime_4, waitTime_5, waitTime_6, waitTime_7, stage3WaitTime)
+
+    --[[
+        Stages:
+        
+        Stage 1 - Install equipment     Min: [18]   Max: [20]
+        Stage 2 - Linking receiver      Min: [ 6]   Max: [15]
+        Stage 3 - Testing satellites     [-------------------]
+            Stage 3.1 - Satellite 1      Min: [13]   Max: [16]
+            Stage 3.2 - Satellite 2      Min: [13]   Max: [18]
+            Stage 3.3 - Satellite 3      Min: [14]   Max: [18]
+            Stage 3.4 - Satellite 4      Min: [12]   Max: [15]
+            Stage 3.5 - Satellite 5      Min: [14]   Max: [18]
+
+    ]]
+
+
+    --
+    -- STAGE 1 - Install Equipment
+    -- Min: 18 seconds
+    -- Max: 20 seconds
+    --
+
+        -- Start Install Equipment
+        print("start stage 1")
+        drawNotification(_("fiveMColour_yellow") .. _U("setBaitCarStage1"))
+        
+        -- Start Animation
+        ClearPedTasks(playerPed)
+        LoadAnim("veh@std@ds@base")
+        TaskPlayAnim(playerPed, "veh@std@ds@base", "hotwire", 8.0, 8.0, waitTime_1, 51, 2, 0, 0, 0)
+        RemoveAnimDict("veh@std@ds@base")
+
+        -- Wait
+        Wait(waitTime_1)
+
+        -- Finish Install Equiment
+        drawNotification(_("fiveMColour_green") .. _U("setBaitCarStage2"))
+
+        print("end stage 1")
+
+    --
+    -- STAGE 2 - Linking Receiver
+    -- Min: 6 seconds
+    -- Max: 15 seconds
+    --
+
+    print("start stage 2")
+        -- Start Linking Receiver
+        drawNotification(_("fiveMColour_yellow") .. _U("setBaitCarStage3"))
+        
+        -- Exit the car
+        ClearPedTasks(playerPed)
+        TaskLeaveVehicle(playerPed, vehicle, 0)
+        Wait(3000)
+
+        -- Start Radar Animation (w_am_digiscanner)
+        -- ClearPedTasks(playerPed)
+        -- LoadAnim("cellphone@")
+        print("Anim 2", stage3WaitTime)
+        -- TaskPlayAnim(playerPed, "cellphone@", "cellphone_text_read_base", 2.0, 2.0, stage3WaitTime, 0, 0, false, false, false)
+        -- RemoveAnimDict("cellphone@")
+        
+        print("Adding Phone")
+        -- AddPropToPlayer("prop_npc_phone_02", 28422, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        -- AddPropToPlayer("w_am_digiscanner", 28422, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+
+        -- Wait
+        Wait(waitTime_2)
+
+        -- Finish Linking Receiver
+        drawNotification(_("fiveMColour_green") .. _U("setBaitCarStage4"))
+
+        print("end stage 2")
+
+    --
+    -- STAGE 3 - Testing Satellite Connections
+    -- Collective Min: 66 seconds
+    -- Collective Max: 85 seconds
+    --
+
+    print("start stage 3")
+        -- Start Testing Satellite Connections
+        drawNotification(_("fiveMColour_yellow") .. _U("setBaitCarStage5"))
+
+
+    --
+    -- STAGE 3.1 - Testing Satellite 1 Connection
+    -- Min: 13 seconds
+    -- Max: 16 seconds
+    --
+
+    print("start stage 3.1")
+        -- Wait
+        Wait(waitTime_3)
+
+        -- Finish Testing Satellite 1 Connection
+        drawNotification(_("fiveMColour_blue") .. _U("setBaitCarStage6"))
+
+        print("end stage 3.1")
+
+    --
+    -- STAGE 3.2 - Testing Satellite 2 Connection
+    -- Min: 13 seconds
+    -- Max: 18 seconds
+    --
+
+    print("start stage 3.2")
+        -- Wait
+        Wait(waitTime_4)
+
+        -- Finish Testing Satellite 2 Connection
+        drawNotification(_("fiveMColour_blue") .. _U("setBaitCarStage7"))
+
+        print("end stage 3.2")
+
+    --
+    -- STAGE 3.3 - Testing Satellite 3 Connection
+    -- Min: 14 seconds
+    -- Max: 18 seconds
+    --
+
+    print("start stage 3.3")
+        -- Wait
+        Wait(waitTime_5)
+
+        -- Finish Testing Satellite 3 Connection
+        drawNotification(_("fiveMColour_blue") .. _U("setBaitCarStage8"))
+
+        print("end stage 3.3")
+
+    --
+    -- STAGE 3.4 - Testing Satellite 4 Connection
+    -- Min: 12 seconds
+    -- Max: 15 seconds
+    --
+    print("start stage 3.4")
+
+        -- Wait
+        Wait(waitTime_6)
+
+        -- Finish Testing Satellite 4 Connection
+        drawNotification(_("fiveMColour_blue") .. _U("setBaitCarStage9"))
+
+        print("end stage 3.4")
+
+    --
+    -- STAGE 3.5 - Testing Satellite 5 Connection
+    -- Min: 14 seconds
+    -- Max: 18 seconds
+    --
+    print("start stage 3.5")
+
+        -- Wait
+        Wait(waitTime_7)
+
+        -- Finish Testing Satellite 5 Connection
+        drawNotification(_("fiveMColour_blue") .. _U("setBaitCarStage10"))
+
+        print("end stage 3.5")
+
+        print("end stage 3")
+    --
+    -- ROUTINE FINISH
+    --
+
+        -- End All Animation
+        ClearPedTasks(playerPed)
+        if Emote["PlayerHasProp"] then
+            DestroyAllProps()
+        end
+
+        drawNotification(_("fiveMColour_green") .. _U("setBaitCarDone"))
+        print("done")
 end
 
 

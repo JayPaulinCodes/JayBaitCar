@@ -22,7 +22,7 @@ client_scripts {
 } 
 
 server_scripts {
-    "server/VersionCheck.lua",
+    -- "server/VersionCheck.lua",
     "server/main.lua",
     "server/functions.lua",
     "server/events.lua",

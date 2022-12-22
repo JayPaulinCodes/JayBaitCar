@@ -57,6 +57,7 @@ LOCALES["en"] = {
     ["remoteebrakeCmd_name"] = "remoteebrake",
     ["remoteebrakeCmd_description"] = "Remotely applies the the bair car's emergency brakes",
 
+
 --    +------------+        
 --    |  Messages  |
 --    +------------+   
@@ -78,6 +79,14 @@ LOCALES["en"] = {
     ["notInCar"] = "you must be in a car to do this!",
     ["forceOffEngine"] = "forcing off the bait car's engine.",
     ["releaseEngine"] = "releasing the bait car's engine.",
+    ["noBaitCarLinked"] = "there is no bait car linked.",
+    ["lockedDoors"] = "the bait car's doors have been locked.",
+    ["unlockedDoors"] = "the bait car's doors have been unlocked.",
+    ["enableEBrake"] = "the bait car's e-brake has been engaged.",
+    ["disableEBrake"] = "the bait car's e-brake has been disengaged.",
+    ["startAlarm"] = "the bait car's alarm has been started.",
+    ["stopAlarm"] = "the bait car's alarm has been stopped.",
+    ["baitCarBlip"] = "Bait Car",
 
     -- Other
     ["registeredCommand"] = " registered command: ",
@@ -85,4 +94,8 @@ LOCALES["en"] = {
     ["obtainingLicense"] = "obtaining player license.",
     ["failedToObtainLicense"] = "failed to obtain player license. Please try to relog.",
 
+
+--    +------------+        
+--    |    Logs    |
+--    +------------+  
 }
