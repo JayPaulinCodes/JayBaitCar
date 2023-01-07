@@ -6,6 +6,11 @@ description "Bait Car script"
 
 version "0.0.1"
 
+files {
+    "html/index.html",
+    "html/css/JayBaitCar.css"
+}
+
 shared_scripts{
     "common/locales.lua",
     "locales/*.lua",

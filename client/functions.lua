@@ -623,3 +623,15 @@ function GoToTargetWalking(target, vehicle, driver)
         
     end
 end
+
+
+function openRemote()
+    SendNUIMessage({ module = "JayBaitCar-openRemote" })
+    SetNuiFocus(true, true)
+end
+
+
+function closeRemote()
+    SendNUIMessage({ module = "JayBaitCar-closeRemote" })
+    SetNuiFocus(false, false)
+end

@@ -210,3 +210,15 @@ RegisterCommand("-Jay:BaitCar:test_carToggleAlarm", function(source, args, rawCo
     end
 
 end, false)
+
+RegisterCommand("-Jay:BaitCar:test_openRemote", function(source, args, rawCommands) 
+    
+    openRemote()
+
+end, false)
+
+RegisterCommand("-Jay:BaitCar:test_closeRemote", function(source, args, rawCommands) 
+    
+    closeRemote()
+
+end, false)

@@ -33,6 +33,14 @@ LOCALES["en"] = {
 --    |  Commands  |
 --    +------------+   
 
+    -- [/openremote] Remote Open Command
+    ["openremoteCmd_name"] = "openremote",
+    ["openremoteCmd_description"] = "Opens bait car remote.",
+
+    -- [/closeremote] Remote Close Command
+    ["closeremoteCmd_name"] = "closeremote",
+    ["closeremoteCmd_description"] = "Closes bait car remote.",
+
     -- [/setbaitcar] Set Bait Car Command
     ["setbaitcarCmd_name"] = "setbaitcar",
     ["setbaitcarCmd_description"] = "Installs bait car equipment into the car you're in",

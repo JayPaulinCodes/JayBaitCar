@@ -21,3 +21,43 @@ RegisterNetEvent("Jay:BaitCar:updateIdentifier")
 AddEventHandler("Jay:BaitCar:updateIdentifier", function() 
     TriggerServerEvent("Jay:BaitCar:updatePlayerIdentifier")
 end)
+
+-- NUI Callback
+RegisterNUICallback("remoteButton_alarm", function(data)
+    print("remoteButton_alarm")
+end)
+
+-- NUI Callback
+RegisterNUICallback("remoteButton_lock", function(data)
+    print("remoteButton_lock")
+end)
+
+-- NUI Callback
+RegisterNUICallback("remoteButton_unlock", function(data)
+    print("remoteButton_unlock")
+end)
+
+-- NUI Callback
+RegisterNUICallback("remoteButton_engineOn", function(data)
+    print("remoteButton_engineOn")
+end)
+
+-- NUI Callback
+RegisterNUICallback("remoteButton_engineOff", function(data)
+    print("remoteButton_engineOff")
+end)
+
+-- NUI Callback
+RegisterNUICallback("remoteButton_ebrakeOn", function(data)
+    print("remoteButton_ebrakeOn")
+end)
+
+-- NUI Callback
+RegisterNUICallback("remoteButton_ebrakeOff", function(data)
+    print("remoteButton_ebrakeOff")
+end)
+
+-- NUI Callback
+RegisterNUICallback("remoteHidden", function(data)
+    print("remoteHidden")
+end)

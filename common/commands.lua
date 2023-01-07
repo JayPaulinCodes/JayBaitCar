@@ -1,5 +1,19 @@
 COMMANDS = {
 
+    -- [/openremote] Remote Open
+    {
+        name = _("openremoteCmd_name"),
+        description = _U("openremoteCmd_description"),
+        parameters = {}
+    },
+
+    -- [/closeremote] Remote Close
+    {
+        name = _("closeremoteCmd_name"),
+        description = _U("closeremoteCmd_description"),
+        parameters = {}
+    },
+
     -- [/setbaitcar] Set Bait Car Command
     {
         name = _("setbaitcarCmd_name"),
