@@ -1,34 +1,39 @@
 fx_version "cerulean"
 games { "gta5" }
 
-author "JayPaulinCodes (https://github.com/JayPaulinCodes)"
-description "Bait Car script"
-
+name "JayBaitCar"
+description "A easy bait car script"
 version "0.0.1"
+author "JayPaulinCodes (https://github.com/JayPaulinCodes)"
 
-files {
-    "html/index.html",
-    "html/css/JayBaitCar.css"
-}
+github_link "JayPaulinCodes/JayBaitCar"
 
-shared_scripts{
+locale "en"
+
+ui_page "html/index.html"
+
+shared_scripts {
     "common/locales.lua",
     "locales/*.lua",
+    "objects/*.lua",
     "common/config.lua",
     "common/commands.lua",
     "common/chatTemplates.lua",
-    "common/controls.lua",
+}
+
+server_scripts {
+    "server/VersionCheck.lua",
 }
 
 client_scripts {
-    "client/main.lua",
     "client/functions.lua",
     "client/events.lua",
-} 
+    "client/main.lua",
+}
 
-server_scripts {
-    -- "server/VersionCheck.lua",
-    "server/main.lua",
-    "server/functions.lua",
-    "server/events.lua",
-} 
+files {
+    "html/imgs/*.png",
+    "html/index.html",
+    "html/css/JayBaitCar.css",
+    "html/css/JayBaitCar.js",
+}

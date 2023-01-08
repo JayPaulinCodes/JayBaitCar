@@ -1,7 +1,9 @@
 LOCALES["en"] = {
-    ["author"] = "script writen by Jay (Error#3569 on discord)",
+--    +------------+ 
+--    |    Base    |
+--    +------------+
 
-    ["invalidArgs"] = "invalid arguments, usage: %s",
+    ["author"] = "script writen by Jay (Error#3569 on discord)",
 
     ["redHex"] = "#d90429",
     ["greenHex"] = "#70e000",
@@ -20,14 +22,9 @@ LOCALES["en"] = {
     ["fiveMColour_resetColour"] = "~s~",
     ["fiveMColour_boldText"] = "~h~",
 
---    +------------+        
---    |    KVP     |
---    +------------+  
-
-    ["kvpString_baitCar_vehicle"] = "Jay:BaitCar:baitCar_vehicle_%s",
-    ["kvpString_baitCar_forceEngine"] = "Jay:BaitCar:baitCar_forceEngine_%s",
-    ["kvpString_baitCar_eBrakeApplied"] = "Jay:BaitCar:baitCar_eBrakeApplied_%s",
-    ["kvpString_baitCar_doorsLocked"] = "Jay:BaitCar:baitCar_doorsLocked_%s",
+    ["registeredCommand"] = " registered command: ",
+    ["registeredChatTemplate"] = " registered chat template: ",
+    ["invalidArgs"] = "invalid arguments, usage: %s",
 
 --    +------------+        
 --    |  Commands  |

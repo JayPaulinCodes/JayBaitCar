@@ -1,17 +1,26 @@
 LOCALES = {}
 
 function _(str, ...)  -- Translate string
+    local locale = "en"
+    local _manifestLocale = GetResourceMetadata(GetCurrentResourceName(), "locale", 0)
+    local _configLocale = CONFIG["Locale"]
 
-	if LOCALES[CONFIG["Locale"]] ~= nil then
+    if _configLocale ~= nil then
+        locale = _configLocale
+    elseif _manifestLocale ~= nil then
+        locale = _manifestLocale
+    end
 
-		if LOCALES[CONFIG["Locale"]][str] ~= nil then
-			return string.format(LOCALES[CONFIG["Locale"]][str], ...)
+	if LOCALES[locale] ~= nil then
+
+		if LOCALES[locale][str] ~= nil then
+			return string.format(LOCALES[locale][str], ...)
 		else
-			return 'Translation [' .. CONFIG["Locale"] .. '][' .. str .. '] does not exist'
+			return 'Translation [' .. locale .. '][' .. str .. '] does not exist'
 		end
 
 	else
-		return 'Locale [' .. CONFIG["Locale"] .. '] does not exist'
+		return 'Locale [' .. locale .. '] does not exist'
 	end
 
 end

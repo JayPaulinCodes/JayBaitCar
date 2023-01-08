@@ -1,3 +1,14 @@
+--[[
+    Required for the base script setup
+]]
+Citizen.CreateThread(function() 
+    Citizen.Wait(50)
+
+    registerCommandSuggestions()
+
+    registerChatTemplates()
+end)
+
 PlayerIdentifier = nil
 -- vMenuOverride = {}
 -- vMenuOverride["vehicleEngineAlwaysOn"] = {}
@@ -13,15 +24,6 @@ BaitCar["Blip"] = nil
 Emote = {}
 Emote["PlayerHasProp"] = false
 Emote["PlayerProps"] = {}
-
--- Setup
-Citizen.CreateThread(function() 
-    Citizen.Wait(50)
-
-    registerCommandSuggestions()
-
-    registerChatTemplates()
-end)
 
 -- Handle Force Engine
 Citizen.CreateThread(function() 
