@@ -35,5 +35,5 @@ files {
     "html/imgs/*.png",
     "html/index.html",
     "html/css/JayBaitCar.css",
-    "html/css/JayBaitCar.js",
+    "html/js/JayBaitCar.js",
 }

@@ -824,12 +824,12 @@ end
 
 
 function openRemote()
-    SendNUIMessage({ module = "JayBaitCar-openRemote" })
+    SendNUIMessage({ module = "openRemote" })
     SetNuiFocus(true, true)
 end
 
 
 function closeRemote()
-    SendNUIMessage({ module = "JayBaitCar-closeRemote" })
+    SendNUIMessage({ module = "closeRemote" })
     SetNuiFocus(false, false)
 end
