@@ -1,81 +1,141 @@
 const _URL = "https://JayBaitCar/";
 
-const CAR_KEY = document.getElementById("car-key");
-const ICON_LOCK = document.getElementById("key-icon-lock");
-const ICON_UNLOCK = document.getElementById("key-icon-unlock");
-const ICON_ENGINE_ON = document.getElementById("key-icon-engine-on");
-const ICON_ENGINE_OFF = document.getElementById("key-icon-engine-off");
-const ICON_EBRAKE_ON = document.getElementById("key-icon-ebrake-on");
-const ICON_EBRAKE_OFF = document.getElementById("key-icon-ebrake-off");
-const ICON_ALARM = document.getElementById("key-icon-alarm");
-
-
-/**
- * Hide the remote on ESC click
- */
-document.addEventListener("keyup", (event) => {
-    if (event.key === "Escape") {
-        toggleRemoteVisibility();
-
-        $.post( _URL + "remoteHidden", JSON.stringify({}) );
+const elements = {
+    carKey: $("#car-key"),
+    
+    icons: {
+        lock: $("#key-icon-lock"),
+        unlock: $("#key-icon-unlock"),
+        engine: $("#key-icon-engine"),
+        eBrake: $("#key-icon-ebrake"),
+        alarm: $("#key-icon-alarm")
     }
+}
+
+// Hide elements
+elements.carKey.hide();
+elements.icons.lock.hide();
+elements.icons.unlock.hide();
+elements.icons.engine.hide();
+elements.icons.eBrake.hide();
+elements.icons.alarm.hide();
+
+// Element Clicks
+elements.icons.lock.click(function() {
+    sendData("remoteButton_lock", {});
+});
+
+elements.icons.unlock.click(function() {
+    sendData("remoteButton_unlock", {});
+});
+
+elements.icons.engine.click(function() {
+    let currentState = (elements.icons.engine.attr("data-value") === 'true');
+    let newState = !currentState;
+
+    if (newState == true) {
+        setElementSource(elements.icons.engine, "imgs/Engine_On.png");
+    } else {
+        setElementSource(elements.icons.engine, "imgs/Engine_Off.png");
+    }
+
+    elements.icons.engine.attr({"data-value": newState});
+
+    sendData("remoteButton_engine", { state: newState });
+});
+
+elements.icons.eBrake.click(function() {
+    let currentState = (elements.icons.eBrake.attr("data-value") === "true");
+    let newState = !currentState;
+
+    if (newState == true) {
+        setElementSource(elements.icons.eBrake, "imgs/E-Brake_On.png");
+    } else {
+        setElementSource(elements.icons.eBrake, "imgs/E-Brake_Off.png");
+    }
+
+    elements.icons.eBrake.attr({"data-value": newState});
+
+    sendData("remoteButton_ebrake", { state: newState });
+});
+
+elements.icons.alarm.click(function() {
+    sendData("remoteButton_alarm", {});
 });
 
 
-/**
- * NUI Message Example
- * SendNUIMessage({ module = "JayBaitCar-openRemote" })
- */
-window.addEventListener("message", function (event) {
-    switch (event.data.module) {
-        case "JayBaitCar-openRemote":
-                toggleRemoteVisibility();
-            break;
-            
-        case "JayBaitCar-closeRemote":
-            toggleRemoteVisibility();
+$(document).keyup( function(event) {
+	if (event.keyCode == 27) {
+		closeRemote();
+	}
+});
 
-            $.post( _URL + "remoteHidden", JSON.stringify({}) );
-            break;
+$(document).contextmenu(function() {
+	closeRemote(); 
+});
 
+
+
+//
+//  Functions
+// 
+
+function setElementVisible(element, state) { 
+    console.log(`Setting element visible for ${element.attr("id")} to ${state}`);
+    state ? element.show() : element.hide(); 
+}
+
+function setElementSource(element, url) { 
+    console.log(`Setting element source for ${element.attr("id")} to ${url}`);
+    element.attr({"src": url});
+}
+
+function sendData(name, data) {
+    $.post(_URL + name, JSON.stringify(data), function(result) {
+        if (result != ok) console.log(result);
+    });
+}
+
+function openRemote() {
+    console.log("Open Func");
+    elements.carKey.show();
+    elements.icons.lock.show();
+    elements.icons.unlock.show();
+    elements.icons.engine.show();
+    elements.icons.eBrake.show();
+    elements.icons.alarm.show();
+}
+
+function closeRemote() {
+    console.log("Close Func");
+    elements.carKey.hide();
+    elements.icons.lock.hide();
+    elements.icons.unlock.hide();
+    elements.icons.engine.hide();
+    elements.icons.eBrake.hide();
+    elements.icons.alarm.hide();
+
+    sendData("remoteHidden", {});
+}
+
+
+//
+// Event Listener
+//
+window.addEventListener("message", function(event) {
+    var _module = event.data.module;
+    var item = event.data;
+
+    switch (_module) {
+        case "openRemote":
+            openRemote();
+            break;
+        case "closeRemote":
+            closeRemote();
+            break;
+    
         default:
             break;
     }
+
 });
-
-
-ICON_ALARM.onclick = function() { $.post( _URL + "remoteButton_alarm", JSON.stringify({}) ); }
-
-ICON_LOCK.onclick = function() { $.post( _URL + "remoteButton_lock", JSON.stringify({}) ); }
-
-ICON_UNLOCK.onclick = function() { $.post( _URL + "remoteButton_unlock", JSON.stringify({}) ); }
-
-ICON_ENGINE_ON.onclick = function() { 
-    $.post( _URL + "remoteButton_engineOn", JSON.stringify({}) );
-    ICON_ENGINE_ON.style.visibility = "hidden";
-    ICON_ENGINE_OFF.style.visibility = "visible";
-}
-
-ICON_ENGINE_OFF.onclick = function() { 
-    $.post( _URL + "remoteButton_engineOff", JSON.stringify({}) );
-    ICON_ENGINE_ON.style.visibility = "visible";
-    ICON_ENGINE_OFF.style.visibility = "hidden";
-}
-
-ICON_EBRAKE_ON.onclick = function() { 
-    $.post( _URL + "remoteButton_ebrakeOn", JSON.stringify({}) );
-    ICON_EBRAKE_ON.style.visibility = "hidden";
-    ICON_EBRAKE_OFF.style.visibility = "visible";
-}
-
-ICON_EBRAKE_OFF.onclick = function() { 
-    $.post( _URL + "remoteButton_ebrakeOff", JSON.stringify({}) );
-    ICON_EBRAKE_ON.style.visibility = "visible";
-    ICON_EBRAKE_OFF.style.visibility = "hidden";
-}
-
-
-function toggleRemoteVisibility() {
-    if (CAR_KEY.style.visibility == "hidden") CAR_KEY.style.visibility = "visible"
-    else  CAR_KEY.style.visibility = "hidden";
-}

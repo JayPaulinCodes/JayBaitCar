@@ -38,26 +38,18 @@ RegisterNUICallback("remoteButton_unlock", function(data)
 end)
 
 -- NUI Callback
-RegisterNUICallback("remoteButton_engineOn", function(data)
-    print("remoteButton_engineOn")
+RegisterNUICallback("remoteButton_engine", function(data)
+    print("remoteButton_engine", data)
 end)
 
 -- NUI Callback
-RegisterNUICallback("remoteButton_engineOff", function(data)
-    print("remoteButton_engineOff")
-end)
-
--- NUI Callback
-RegisterNUICallback("remoteButton_ebrakeOn", function(data)
-    print("remoteButton_ebrakeOn")
-end)
-
--- NUI Callback
-RegisterNUICallback("remoteButton_ebrakeOff", function(data)
-    print("remoteButton_ebrakeOff")
+RegisterNUICallback("remoteButton_ebrake", function(data)
+    print("remoteButton_ebrake", data)
 end)
 
 -- NUI Callback
 RegisterNUICallback("remoteHidden", function(data)
     print("remoteHidden")
+    
+    SetNuiFocus(false, false)
 end)

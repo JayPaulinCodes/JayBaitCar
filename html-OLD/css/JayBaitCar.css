@@ -6,7 +6,7 @@
 }
 
 .car-key {
-    /* visibility: hidden; */
+    visibility: hidden;
     position: absolute;
     bottom: 5%;
     right: 5%;
@@ -35,12 +35,16 @@
     right: 13%;
 }
 
+.state-engineOn { visibility: hidden; }
+.state-engineOff { visibility: hidden; }
 .icon-engine {
     width: 27%;
     bottom: 40%;
     right: 53%;
 }
 
+.state-ebrakeOn { visibility: hidden; }
+.state-ebrakeOff { visibility: hidden; }
 .icon-ebrake {
     width: 40%;
     bottom: 39%;
