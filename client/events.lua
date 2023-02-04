@@ -25,26 +25,31 @@ end)
 -- NUI Callback
 RegisterNUICallback("remoteButton_alarm", function(data)
     print("remoteButton_alarm")
+    ExecuteCommand(_("remotealarmCmd_name"))
 end)
 
 -- NUI Callback
 RegisterNUICallback("remoteButton_lock", function(data)
     print("remoteButton_lock")
+    ExecuteCommand(_("remotealarmCmd_name"))
 end)
 
 -- NUI Callback
 RegisterNUICallback("remoteButton_unlock", function(data)
     print("remoteButton_unlock")
+    ExecuteCommand(_("remotealarmCmd_name"))
 end)
 
 -- NUI Callback
 RegisterNUICallback("remoteButton_engine", function(data)
     print("remoteButton_engine", data)
+    ExecuteCommand(_("remotealarmCmd_name"))
 end)
 
 -- NUI Callback
 RegisterNUICallback("remoteButton_ebrake", function(data)
     print("remoteButton_ebrake", data)
+    ExecuteCommand(_("remotealarmCmd_name"))
 end)
 
 -- NUI Callback

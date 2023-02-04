@@ -46,21 +46,25 @@ LOCALES["en"] = {
     ["toggletrackingCmd_name"] = "toggletracking",
     ["toggletrackingCmd_description"] = "Enables tracking of the bait car",
 
-    -- [/remotelocks] Remote Locks Command
-    ["remotelocksCmd_name"] = "remotelocks",
-    ["remotelocksCmd_description"] = "Remotely toggles the bair car's door locks",
-
-    -- [/remoteengine] Remote Engine Command
+    -- [/remoteengine] Toggle Engine Command
     ["remoteengineCmd_name"] = "remoteengine",
-    ["remoteengineCmd_description"] = "Remotely toggles the bair car's engine",
+    ["remoteengineCmd_description"] = "Toggle's the bait car's engine.",
 
-    -- [/remotebrake] Remote Brake Command
-    ["remotebrakeCmd_name"] = "remotebrake",
-    ["remotebrakeCmd_description"] = "Remotely applies the the bair car's brakes",
+    -- [/remotelock] Remote Locks Command
+    ["remotelockCmd_name"] = "remotelock",
+    ["remotelockCmd_description"] = "Remotely locks the bait car's doors",
 
-    -- [/remoteebrake] Remote E-Brake Command
+    -- [/remoteunlocks] Remote Unlock Command
+    ["remoteunlockCmd_name"] = "remoteunlock",
+    ["remoteunlockCmd_description"] = "Remotely unlocks the bait car's doors",
+
+    -- [/remotealarm] Remote Alarm Command
+    ["remotealarmCmd_name"] = "remotealarm",
+    ["remotealarmCmd_description"] = "Remotely toggles the bait car's alarm",
+
+    -- [/remotebrake] Remote E-Brake Command
     ["remoteebrakeCmd_name"] = "remoteebrake",
-    ["remoteebrakeCmd_description"] = "Remotely applies the the bair car's emergency brakes",
+    ["remoteebrakeCmd_description"] = "Remotely toggles the the bait car's emergency brakes",
 
 
 --    +------------+        
