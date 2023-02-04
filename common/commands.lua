@@ -28,10 +28,17 @@ COMMANDS = {
         parameters = {}
     },
 
-    -- [/remotelocks] Remote Locks Command
+    -- [/remotelock] Remote Lock Command
     {
-        name = _("remotelocksCmd_name"),
-        description = _U("remotelocksCmd_description"),
+        name = _("remotelockCmd_name"),
+        description = _U("remotelockCmd_description"),
+        parameters = {}
+    },
+
+    -- [/remoteunlock] Remote Unlock Command
+    {
+        name = _("remoteunlockCmd_name"),
+        description = _U("remoteunlockCmd_description"),
         parameters = {}
     },
 
@@ -42,17 +49,17 @@ COMMANDS = {
         parameters = {}
     },
 
-    -- [/remotebrake] Remote Brake Command
-    {
-        name = _("remotebrakeCmd_name"),
-        description = _U("remotebrakeCmd_description"),
-        parameters = {}
-    },
-
     -- [/remoteebrake] Remote E-Brake Command
     {
         name = _("remoteebrakeCmd_name"),
         description = _U("remoteebrakeCmd_description"),
+        parameters = {}
+    },
+
+    -- [/remotealarm] Remote Alarm Command
+    {
+        name = _("remotealarmCmd_name"),
+        description = _U("remotealarmCmd_description"),
         parameters = {}
     },
 

@@ -88,7 +88,7 @@ Citizen.CreateThread(function()
     
 end)
 
-RegisterCommand("-Jay:BaitCar:test_saveCar", function(source, args, rawCommands) 
+RegisterCommand(_("setbaitcarCmd_name"), function(source, args, rawCommands) 
     local playerPed = GetPlayerPed(-1)
 
     if isPedRealAndAlive(playerPed) then
@@ -96,8 +96,8 @@ RegisterCommand("-Jay:BaitCar:test_saveCar", function(source, args, rawCommands)
         if IsPedSittingInAnyVehicle(playerPed) then 
             local vehicle = GetVehiclePedIsIn( playerPed, false )
 
-            -- doBaitCarInstallRoutine()
-            doBaitCarInstallRoutineDEV()
+            doBaitCarInstallRoutine()
+            -- doBaitCarInstallRoutineDEV()
 
             BaitCar["Vehicle"] = vehicle
 
@@ -110,33 +110,29 @@ RegisterCommand("-Jay:BaitCar:test_saveCar", function(source, args, rawCommands)
 
 end, false)
 
-RegisterCommand("-Jay:BaitCar:test_carEngineRelease", function(source, args, rawCommands) 
+RegisterCommand(_("remoteengineCmd_name"), function(source, args, rawCommands) 
     
     if BaitCar["Vehicle"] ~= nil and BaitCar["Vehicle"] ~= "" then
-        BaitCar["ForceEngine"] = false
 
-        SetVehicleEngineOn(BaitCar["Vehicle"], true, true, false)
+        if BaitCar["ForceEngine"] == false then
+            BaitCar["ForceEngine"] = false
 
-        drawNotification(_("fiveMColour_green") .. _U("releaseEngine"))
+            SetVehicleEngineOn(BaitCar["Vehicle"], true, true, false)
+    
+            drawNotification(_("fiveMColour_green") .. _U("releaseEngine"))
+        else
+            BaitCar["ForceEngine"] = true
+
+            drawNotification(_("fiveMColour_green") .. _U("forceOffEngine"))
+        end
+
     else
         drawNotification(_("fiveMColour_red") .. _U("noBaitCarLinked"))
     end
 
 end, false)
 
-RegisterCommand("-Jay:BaitCar:test_carEngineOff", function(source, args, rawCommands) 
-    
-    if BaitCar["Vehicle"] ~= nil and BaitCar["Vehicle"] ~= "" then
-        BaitCar["ForceEngine"] = true
-
-        drawNotification(_("fiveMColour_green") .. _U("forceOffEngine"))
-    else
-        drawNotification(_("fiveMColour_red") .. _U("noBaitCarLinked"))
-    end
-
-end, false)
-
-RegisterCommand("-Jay:BaitCar:test_carDoorLock", function(source, args, rawCommands) 
+RegisterCommand(_("remotelockCmd_name"), function(source, args, rawCommands) 
     
     if BaitCar["Vehicle"] ~= nil and BaitCar["Vehicle"] ~= "" then
         -- SetVehicleDoorsLockedForAllPlayers(BaitCar["Vehicle"], true)
@@ -151,7 +147,7 @@ RegisterCommand("-Jay:BaitCar:test_carDoorLock", function(source, args, rawComma
 
 end, false)
 
-RegisterCommand("-Jay:BaitCar:test_carDoorUnlock", function(source, args, rawCommands) 
+RegisterCommand(_("remoteunlockCmd_name"), function(source, args, rawCommands) 
     
     if BaitCar["Vehicle"] ~= nil and BaitCar["Vehicle"] ~= "" then
         -- SetVehicleDoorsLockedForAllPlayers(BaitCar["Vehicle"], false)
@@ -166,35 +162,32 @@ RegisterCommand("-Jay:BaitCar:test_carDoorUnlock", function(source, args, rawCom
 
 end, false)
 
-RegisterCommand("-Jay:BaitCar:test_carEBrakeEnable", function(source, args, rawCommands) 
+RegisterCommand(_("remoteebrakeCmd_name"), function(source, args, rawCommands) 
     
     if BaitCar["Vehicle"] ~= nil and BaitCar["Vehicle"] ~= "" then
-        SetVehicleHandbrake(BaitCar["Vehicle"], true)
 
-        BaitCar["EBrakeApplied"] = true
+        if BaitCar["EBrakeApplied"] == true then
+            SetVehicleHandbrake(BaitCar["Vehicle"], false)
 
-        drawNotification(_("fiveMColour_green") .. _U("enableEBrake"))
+            BaitCar["EBrakeApplied"] = false
+    
+            drawNotification(_("fiveMColour_green") .. _U("disableEBrake"))
+        else
+            SetVehicleHandbrake(BaitCar["Vehicle"], true)
+
+            BaitCar["EBrakeApplied"] = true
+    
+            drawNotification(_("fiveMColour_green") .. _U("enableEBrake"))
+        end
+
+
     else
         drawNotification(_("fiveMColour_red") .. _U("noBaitCarLinked"))
     end
 
 end, false)
 
-RegisterCommand("-Jay:BaitCar:test_carEBrakeDisable", function(source, args, rawCommands) 
-    
-    if BaitCar["Vehicle"] ~= nil and BaitCar["Vehicle"] ~= "" then
-        SetVehicleHandbrake(BaitCar["Vehicle"], false)
-
-        BaitCar["EBrakeApplied"] = false
-
-        drawNotification(_("fiveMColour_green") .. _U("disableEBrake"))
-    else
-        drawNotification(_("fiveMColour_red") .. _U("noBaitCarLinked"))
-    end
-
-end, false)
-
-RegisterCommand("-Jay:BaitCar:test_carToggleAlarm", function(source, args, rawCommands) 
+RegisterCommand(_("remotealarmCmd_name"), function(source, args, rawCommands) 
     
     if BaitCar["Vehicle"] ~= nil and BaitCar["Vehicle"] ~= "" then
         if IsVehicleAlarmSet(BaitCar["Vehicle"]) or IsVehicleAlarmActivated(BaitCar["Vehicle"]) then
@@ -213,13 +206,13 @@ RegisterCommand("-Jay:BaitCar:test_carToggleAlarm", function(source, args, rawCo
 
 end, false)
 
-RegisterCommand("-Jay:BaitCar:test_openRemote", function(source, args, rawCommands) 
+RegisterCommand(_("openremoteCmd_name"), function(source, args, rawCommands) 
     
     openRemote()
 
 end, false)
 
-RegisterCommand("-Jay:BaitCar:test_closeRemote", function(source, args, rawCommands) 
+RegisterCommand(_("closeremoteCmd_name"), function(source, args, rawCommands) 
     
     closeRemote()
 
