@@ -6,6 +6,12 @@ function serverId()
 end
 
 
+function drawNotification(message)
+    SetNotificationTextEntry("STRING")
+    AddTextComponentString(message)
+    DrawNotification(false, false)
+end
+
 --[[
     Registers command suggestions for each command
     in the common/commands.lua file

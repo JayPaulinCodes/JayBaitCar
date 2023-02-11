@@ -16,9 +16,9 @@ PlayerIdentifier = nil
 -- vMenuOverride["vehicleEngineAlwaysOn"]["originalValue"] = nil
 BaitCar = {}
 BaitCar["Vehicle"] = ""
-BaitCar["ForceEngine"] = nil
-BaitCar["EBrakeApplied"] = nil
-BaitCar["DoorsLocked"] = nil
+BaitCar["ForceEngine"] = false
+BaitCar["EBrakeApplied"] = false
+BaitCar["DoorsLocked"] = false
 BaitCar["Blip"] = nil
 
 Emote = {}
@@ -88,6 +88,27 @@ Citizen.CreateThread(function()
     
 end)
 
+RegisterCommand("devsetbaitcar", function(source, args, rawCommands) 
+    local playerPed = GetPlayerPed(-1)
+
+    if isPedRealAndAlive(playerPed) then
+
+        if IsPedSittingInAnyVehicle(playerPed) then 
+            local vehicle = GetVehiclePedIsIn( playerPed, false )
+
+            doBaitCarInstallRoutineDEV()
+
+            BaitCar["Vehicle"] = vehicle
+
+            saveBaitCarData()
+        else
+            -- You must be in a car
+        end
+
+    end
+
+end, false)
+
 RegisterCommand(_("setbaitcarCmd_name"), function(source, args, rawCommands) 
     local playerPed = GetPlayerPed(-1)
 
@@ -97,7 +118,6 @@ RegisterCommand(_("setbaitcarCmd_name"), function(source, args, rawCommands)
             local vehicle = GetVehiclePedIsIn( playerPed, false )
 
             doBaitCarInstallRoutine()
-            -- doBaitCarInstallRoutineDEV()
 
             BaitCar["Vehicle"] = vehicle
 
@@ -113,17 +133,17 @@ end, false)
 RegisterCommand(_("remoteengineCmd_name"), function(source, args, rawCommands) 
     
     if BaitCar["Vehicle"] ~= nil and BaitCar["Vehicle"] ~= "" then
-
+        print("Bait Car Engine Status: ", BaitCar["ForceEngine"])
         if BaitCar["ForceEngine"] == false then
-            BaitCar["ForceEngine"] = false
+            BaitCar["ForceEngine"] = true
 
             SetVehicleEngineOn(BaitCar["Vehicle"], true, true, false)
     
-            drawNotification(_("fiveMColour_green") .. _U("releaseEngine"))
-        else
-            BaitCar["ForceEngine"] = true
-
             drawNotification(_("fiveMColour_green") .. _U("forceOffEngine"))
+        else
+            BaitCar["ForceEngine"] = false
+            
+            drawNotification(_("fiveMColour_green") .. _U("releaseEngine"))
         end
 
     else
@@ -190,13 +210,17 @@ end, false)
 RegisterCommand(_("remotealarmCmd_name"), function(source, args, rawCommands) 
     
     if BaitCar["Vehicle"] ~= nil and BaitCar["Vehicle"] ~= "" then
-        if IsVehicleAlarmSet(BaitCar["Vehicle"]) or IsVehicleAlarmActivated(BaitCar["Vehicle"]) then
+        print(IsVehicleAlarmSet(BaitCar["Vehicle"]), IsVehicleAlarmActivated(BaitCar["Vehicle"]))
+
+        if (IsVehicleAlarmSet(BaitCar["Vehicle"]) == 1 or IsVehicleAlarmSet(BaitCar["Vehicle"]) == true) or IsVehicleAlarmActivated(BaitCar["Vehicle"]) then
             SetVehicleAlarmTimeLeft(BaitCar["Vehicle"], 1)
+            -- SetVehicleAlarm(BaitCar["Vehicle"], false)
 
             drawNotification(_("fiveMColour_green") .. _U("stopAlarm"))
         else
-            SetVehicleAlarmTimeLeft(BaitCar["Vehicle"], 100000)
+            SetVehicleAlarmTimeLeft(BaitCar["Vehicle"], 3000)
             StartVehicleAlarm(BaitCar["Vehicle"])
+            -- SetVehicleAlarm(BaitCar["Vehicle"], true)
 
             drawNotification(_("fiveMColour_green") .. _U("startAlarm"))
         end
